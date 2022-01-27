@@ -30,7 +30,6 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 		for i := 0; i < lines.Len(); i++ {
 			line := lines.At(i)
 			buf.Write(line.Value(src))
-			buf.WriteRune('\n')
 		}
 
 		zOut, _, _, _ := gopikchr.Convert(buf.String())

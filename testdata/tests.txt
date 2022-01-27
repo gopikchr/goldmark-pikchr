@@ -9,10 +9,10 @@ box color red wid 2.6in \
 ```
 //- - - - - - - - -//
 <p>Transforms pikchr blocks.</p>
-<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 1055.52 76.32">
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
 <path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
-<text x="561" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
-<text x="902" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
+<text x="189" y="25" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
+<text x="189" y="50" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
 </svg>
 //= = = = = = = = = = = = = = = = = = = = = = = =//
 2
@@ -62,10 +62,10 @@ arrow right 200% "Markdown" "Source"
 ```
 //- - - - - - - - -//
 <p>Supports multiple Pikchr blocks. (#3)</p>
-<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 1055.52 76.32">
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
 <path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
-<text x="561" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
-<text x="902" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
+<text x="189" y="25" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
+<text x="189" y="50" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
 </svg>
 <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 423.821 195.84">
 <polygon points="146,37 134,41 134,33" style="fill:rgb(0,0,0)"/>
