@@ -1,0 +1,90 @@
+1
+//- - - - - - - - -//
+Transforms pikchr blocks.
+
+```pikchr
+box color red wid 2.6in \
+    "Click on any diagram on this page" big \
+    "to see the Pikchr source text" big
+```
+//- - - - - - - - -//
+<p>Transforms pikchr blocks.</p>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 1055.52 76.32">
+<path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
+<text x="561" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
+<text x="902" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
+</svg>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+2
+//- - - - - - - - -//
+Leaves unmarked blocks alone.
+
+```
+box color red wid 2.6in \
+    "Click on any diagram on this page" big \
+    "to see the Pikchr source text" big
+```
+//- - - - - - - - -//
+<p>Leaves unmarked blocks alone.</p>
+<pre><code>box color red wid 2.6in \
+    &quot;Click on any diagram on this page&quot; big \
+    &quot;to see the Pikchr source text&quot; big
+</code></pre>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+3
+//- - - - - - - - -//
+Does not change other languages.
+
+```javascript
+console.log("hello")
+```
+//- - - - - - - - -//
+<p>Does not change other languages.</p>
+<pre><code class="language-javascript">console.log(&quot;hello&quot;)
+</code></pre>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+4
+//- - - - - - - - -//
+Supports multiple Pikchr blocks. (#3)
+
+```pikchr
+box color red wid 2.6in \
+    "Click on any diagram on this page" big \
+    "to see the Pikchr source text" big
+```
+
+```pikchr
+arrow right 200% "Markdown" "Source"
+   box rad 10px "Markdown" "Formatter" "(markdown.c)" fit
+   arrow right 200% "HTML+SVG" "Output"
+   arrow <-> down 70% from last box.s
+   box same "Pikchr" "Formatter" "(pikchr.c)" fit
+```
+//- - - - - - - - -//
+<p>Supports multiple Pikchr blocks. (#3)</p>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 1055.52 76.32">
+<path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
+<text x="561" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
+<text x="902" y="38" text-anchor="middle" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
+</svg>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 423.821 195.84">
+<polygon points="146,37 134,41 134,33" style="fill:rgb(0,0,0)"/>
+<path d="M2,37L140,37"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="74" y="25" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Markdown</text>
+<text x="74" y="49" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Source</text>
+<path d="M161,72L258,72A15 15 0 0 0 273 57L273,17A15 15 0 0 0 258 2L161,2A15 15 0 0 0 146 17L146,57A15 15 0 0 0 161 72Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="209" y="17" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Markdown</text>
+<text x="209" y="37" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Formatter</text>
+<text x="209" y="57" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">(markdown.c)</text>
+<polygon points="417,37 405,41 405,33" style="fill:rgb(0,0,0)"/>
+<path d="M273,37L411,37"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="345" y="25" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">HTML+SVG</text>
+<text x="345" y="49" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Output</text>
+<polygon points="209,72 214,84 205,84" style="fill:rgb(0,0,0)"/>
+<polygon points="209,123 205,111 214,111" style="fill:rgb(0,0,0)"/>
+<path d="M209,78L209,117"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<path d="M176,193L243,193A15 15 0 0 0 258 178L258,138A15 15 0 0 0 243 123L176,123A15 15 0 0 0 161 138L161,178A15 15 0 0 0 176 193Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="209" y="138" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Pikchr</text>
+<text x="209" y="158" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Formatter</text>
+<text x="209" y="178" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">(pikchr.c)</text>
+</svg>
