@@ -9,11 +9,15 @@ box color red wid 2.6in \
 ```
 //- - - - - - - - -//
 <p>Transforms pikchr blocks.</p>
+<div id='pikchr-0' class='pikchr'>
+<div style='max-width:378px'>
 <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
 <path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
 <text x="189" y="25" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
 <text x="189" y="50" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
 </svg>
+</div>
+</div>
 //= = = = = = = = = = = = = = = = = = = = = = = =//
 2
 //- - - - - - - - -//
@@ -62,11 +66,17 @@ arrow right 200% "Markdown" "Source"
 ```
 //- - - - - - - - -//
 <p>Supports multiple Pikchr blocks. (#3)</p>
+<div id='pikchr-0' class='pikchr'>
+<div style='max-width:378px'>
 <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
 <path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
 <text x="189" y="25" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
 <text x="189" y="50" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
 </svg>
+</div>
+</div>
+<div id='pikchr-1' class='pikchr'>
+<div style='max-width:423px'>
 <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 423.821 195.84">
 <polygon points="146,37 134,41 134,33" style="fill:rgb(0,0,0)"/>
 <path d="M2,37L140,37"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -88,3 +98,38 @@ arrow right 200% "Markdown" "Source"
 <text x="209" y="158" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Formatter</text>
 <text x="209" y="178" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">(pikchr.c)</text>
 </svg>
+</div>
+</div>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+5
+//- - - - - - - - -//
+Handles toggle attribute
+
+```pikchr {toggle=true}
+box color red wid 2.6in \
+    "Click on any diagram on this page" big \
+    "to see the Pikchr source text" big
+```
+//- - - - - - - - -//
+<p>Handles toggle attribute</p>
+<div id='pikchr-0' class='pikchr' onclick="toggleHidden('svg-0')">
+<div style='max-width:378px'>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
+<path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
+<text x="189" y="25" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
+<text x="189" y="50" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
+</svg>
+</div>
+<pre class='hidden'>
+box color red wid 2.6in \
+    "Click on any diagram on this page" big \
+    "to see the Pikchr source text" big
+</pre>
+</div>
+<script>
+  function toggleHidden(id){
+    for(var c of document.getElementById(id).children){
+      c.classList.toggle('hidden');
+    }
+  }
+</script>

@@ -33,7 +33,7 @@ func TestTransformer(t *testing.T) {
 				"```",
 			),
 			wantBodies: []string{"foo\n"},
-			wantScript: false,
+			wantScript: true,
 		},
 		{
 			desc: "pikchr and not",
@@ -53,7 +53,21 @@ func TestTransformer(t *testing.T) {
 				"",
 			),
 			wantBodies: []string{"foo\n"},
-			wantScript: false,
+			wantScript: true,
+		},
+		{
+			desc: "multiple pikchr",
+			give: unlines(
+				"```pikchr",
+				"foo",
+				"```",
+				"",
+				"```pikchr",
+				"bar",
+				"```",
+			),
+			wantBodies: []string{"foo\n", "bar\n"},
+			wantScript: true,
 		},
 	}
 
@@ -136,5 +150,5 @@ func TestTransformer_RepeatedTransformations(t *testing.T) {
 		return ast.WalkContinue, nil
 	})
 
-	assert.Equal(t, 0, scriptCount)
+	assert.Equal(t, 1, scriptCount)
 }

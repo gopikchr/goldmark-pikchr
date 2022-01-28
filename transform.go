@@ -25,6 +25,8 @@ func (*Transformer) Transform(doc *ast.Document, reader text.Reader, pctx parser
 		pikchrBlocks []*ast.FencedCodeBlock
 	)
 
+	scriptBlock := &ScriptBlock{}
+
 	// Collect all blocks to be replaced without modifying the tree.
 	ast.Walk(doc, func(node ast.Node, enter bool) (ast.WalkStatus, error) {
 		if !enter {
@@ -56,9 +58,11 @@ func (*Transformer) Transform(doc *ast.Document, reader text.Reader, pctx parser
 		return
 	}
 
-	for _, cb := range pikchrBlocks {
+	for i, cb := range pikchrBlocks {
 		b := new(Block)
-		b.SetLines(cb.Lines())
+		b.FencedCodeBlock = *cb
+		b.index = i
+		b.showToggleScript = &scriptBlock.showToggleScript
 
 		parent := cb.Parent()
 		if parent != nil {
@@ -66,7 +70,7 @@ func (*Transformer) Transform(doc *ast.Document, reader text.Reader, pctx parser
 		}
 	}
 
-	if !hasScript && false { // no scripts for now
-		doc.AppendChild(doc, &ScriptBlock{})
+	if !hasScript { // no scripts for now
+		doc.AppendChild(doc, scriptBlock)
 	}
 }

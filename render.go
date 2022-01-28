@@ -2,12 +2,15 @@ package pikchr
 
 import (
 	"bytes"
+	"fmt"
 
 	"github.com/gopikchr/gopikchr"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/util"
 )
+
+var toggleAttrName = []byte("toggle")
 
 // Renderer renders Pikchr diagrams as HTML/SVG.
 type Renderer struct {
@@ -24,7 +27,28 @@ func (r *Renderer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
 	n := node.(*Block)
 	if entering {
-		// w.WriteString(`<div class="pikchr">`)
+		toggle := false
+
+		var info []byte
+		if n.Info != nil {
+			info = n.Info.Segment.Value(src)
+		}
+		attrs := getAttributes(&n.FencedCodeBlock, info)
+		if attrs != nil {
+			if toggleAttr, ok := attrs.Get(toggleAttrName); ok {
+				if val, ok := toggleAttr.(bool); ok {
+					toggle = val
+					if n.showToggleScript != nil {
+						*n.showToggleScript = true
+					}
+				}
+			}
+		}
+		fmt.Fprintf(w, "<div id='pikchr-%d' class='pikchr'", n.index)
+		if toggle {
+			fmt.Fprintf(w, " onclick=\"toggleHidden('pikchr-%d')\"", n.index)
+		}
+		w.WriteString(">\n")
 		lines := n.Lines()
 		var buf bytes.Buffer
 		for i := 0; i < lines.Len(); i++ {
@@ -32,8 +56,17 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 			buf.Write(line.Value(src))
 		}
 
-		zOut, _, _, _ := gopikchr.Convert(buf.String())
-		w.WriteString(zOut)
+		zOut, width, _, _ := gopikchr.Convert(buf.String())
+		fmt.Fprintf(w, "<div style='max-width:%dpx'>\n%s</div>\n", width, zOut)
+		if toggle {
+			fmt.Fprintf(w, "<pre class='hidden'>\n")
+			for i := 0; i < lines.Len(); i++ {
+				line := lines.At(i)
+				w.Write(line.Value(src))
+			}
+			fmt.Fprintf(w, "</pre>\n")
+		}
+		w.WriteString("</div>\n")
 	}
 	return ast.WalkContinue, nil
 }
@@ -41,13 +74,20 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 // pikchrJS is the javascript used to toggle viewing of Pikchr scripts with
 // their source.
 const pikchrJS = `<script>
+  function toggleHidden(id){
+    for(var c of document.getElementById(id).children){
+      c.classList.toggle('hidden');
+    }
+  }
 </script>`
 
 // RenderScript renders pikchr.ScriptBlock nodes.
 func (r *Renderer) RenderScript(w util.BufWriter, src []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
-	_ = node.(*ScriptBlock) // sanity check
+	sb := node.(*ScriptBlock)
 	if entering {
-		w.WriteString(pikchrJS)
+		if sb.showToggleScript {
+			w.WriteString(pikchrJS)
+		}
 	}
 
 	return ast.WalkContinue, nil

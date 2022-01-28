@@ -15,7 +15,9 @@ var Kind = ast.NewNodeKind("PikchrBlock")
 //
 // Its raw contents are the plain text of the Pikchr diagram.
 type Block struct {
-	ast.BaseBlock
+	ast.FencedCodeBlock
+	index            int
+	showToggleScript *bool
 }
 
 // IsRaw reports that this block should be rendered as-is.
@@ -37,6 +39,7 @@ var ScriptKind = ast.NewNodeKind("PikchrScriptBlock")
 // This is a placeholder and does not contain anything.
 type ScriptBlock struct {
 	ast.BaseBlock
+	showToggleScript bool
 }
 
 // IsRaw reports that this block should be rendered as-is.
