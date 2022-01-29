@@ -112,7 +112,7 @@ box color red wid 2.6in \
 ```
 //- - - - - - - - -//
 <p>Handles toggle attribute</p>
-<div id='pikchr-0' class='pikchr' onclick="toggleHidden('svg-0')">
+<div id='pikchr-0' class='pikchr' onclick="toggleHidden('pikchr-0')">
 <div style='max-width:378px'>
 <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
 <path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
@@ -133,3 +133,24 @@ box color red wid 2.6in \
     }
   }
 </script>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+6
+//- - - - - - - - -//
+Handles limitwidth attribute
+
+```pikchr {limitwidth=false}
+box color red wid 2.6in \
+    "Click on any diagram on this page" big \
+    "to see the Pikchr source text" big
+```
+//- - - - - - - - -//
+<p>Handles limitwidth attribute</p>
+<div id='pikchr-0' class='pikchr'>
+<div>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 378.72 76.32">
+<path d="M2,74L376,74L376,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(255,0,0);" />
+<text x="189" y="25" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">Click on any diagram on this page</text>
+<text x="189" y="50" text-anchor="middle" fill="rgb(255,0,0)" font-size="125%" dominant-baseline="central">to see the Pikchr source text</text>
+</svg>
+</div>
+</div>

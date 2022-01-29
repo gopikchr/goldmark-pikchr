@@ -11,6 +11,7 @@ import (
 )
 
 var toggleAttrName = []byte("toggle")
+var limitWidthAttrName = []byte("limitwidth")
 
 // Renderer renders Pikchr diagrams as HTML/SVG.
 type Renderer struct {
@@ -28,6 +29,7 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 	n := node.(*Block)
 	if entering {
 		toggle := false
+		limitWidth := true
 
 		var info []byte
 		if n.Info != nil {
@@ -41,6 +43,11 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 					if n.showToggleScript != nil {
 						*n.showToggleScript = true
 					}
+				}
+			}
+			if limitWidthAttr, ok := attrs.Get(limitWidthAttrName); ok {
+				if val, ok := limitWidthAttr.(bool); ok {
+					limitWidth = val
 				}
 			}
 		}
@@ -57,7 +64,11 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 		}
 
 		zOut, width, _, _ := gopikchr.Convert(buf.String())
-		fmt.Fprintf(w, "<div style='max-width:%dpx'>\n%s</div>\n", width, zOut)
+		if limitWidth {
+			fmt.Fprintf(w, "<div style='max-width:%dpx'>\n%s</div>\n", width, zOut)
+		} else {
+			fmt.Fprintf(w, "<div>\n%s</div>\n", zOut)
+		}
 		if toggle {
 			fmt.Fprintf(w, "<pre class='hidden'>\n")
 			for i := 0; i < lines.Len(); i++ {
