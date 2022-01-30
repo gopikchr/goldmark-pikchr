@@ -63,8 +63,8 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 			buf.Write(line.Value(src))
 		}
 
-		zOut, width, _, _ := gopikchr.Convert(buf.String())
-		if limitWidth {
+		zOut, width, _, err := gopikchr.Convert(buf.String())
+		if limitWidth && err == nil {
 			fmt.Fprintf(w, "<div style='max-width:%dpx'>\n%s</div>\n", width, zOut)
 		} else {
 			fmt.Fprintf(w, "<div>\n%s</div>\n", zOut)
