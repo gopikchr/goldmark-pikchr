@@ -65,7 +65,7 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 
 		zOut, width, _, err := gopikchr.Convert(buf.String())
 		if limitWidth && err == nil {
-			fmt.Fprintf(w, "<div style='max-width:%dpx'>\n%s</div>\n", width, zOut)
+			fmt.Fprintf(w, "<div class='pikchr-svg' style='max-width:%dpx'>\n%s</div>\n", width, zOut)
 		} else {
 			fmt.Fprintf(w, "<div>\n%s</div>\n", zOut)
 		}
