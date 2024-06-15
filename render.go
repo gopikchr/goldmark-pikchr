@@ -15,6 +15,7 @@ var limitWidthAttrName = []byte("limitwidth")
 
 // Renderer renders Pikchr diagrams as HTML/SVG.
 type Renderer struct {
+	ToggleDefault bool // If true, turn toggling on by default
 }
 
 // RegisterFuncs registers the renderer for Pikchr blocks with the provided
@@ -25,10 +26,10 @@ func (r *Renderer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 }
 
 // Render renders pikchr.Block nodes.
-func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
+func (r *Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
 	n := node.(*Block)
 	if entering {
-		toggle := false
+		toggle := r.ToggleDefault
 		limitWidth := true
 
 		var info []byte
@@ -40,9 +41,6 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 			if toggleAttr, ok := attrs.Get(toggleAttrName); ok {
 				if val, ok := toggleAttr.(bool); ok {
 					toggle = val
-					if n.showToggleScript != nil {
-						*n.showToggleScript = true
-					}
 				}
 			}
 			if limitWidthAttr, ok := attrs.Get(limitWidthAttrName); ok {
@@ -53,6 +51,9 @@ func (*Renderer) Render(w util.BufWriter, src []byte, node ast.Node, entering bo
 		}
 		fmt.Fprintf(w, "<div id='pikchr-%d' class='pikchr'", n.index)
 		if toggle {
+			if n.showToggleScript != nil {
+				*n.showToggleScript = true
+			}
 			fmt.Fprintf(w, " onclick=\"toggleHidden('pikchr-%d')\"", n.index)
 		}
 		w.WriteString(">\n")

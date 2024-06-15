@@ -11,14 +11,16 @@ import (
 //
 // Use it by installing it to the goldmark.Markdown object upon creation.
 //
-//   goldmark.New(
-//     // ...
-//     goldmark.WithExtensions(
-//       // ...
-//       &pikchr.Exender{},
-//     ),
-//   )
-type Extender struct{}
+//	goldmark.New(
+//	  // ...
+//	  goldmark.WithExtensions(
+//	    // ...
+//	    &pikchr.Exender{},
+//	  ),
+//	)
+type Extender struct {
+	ToggleDefault bool // If true, turn toggling on by default
+}
 
 // Extend extends the provided Goldmark parser with support for Pikchr
 // diagrams.
@@ -30,7 +32,7 @@ func (e *Extender) Extend(md goldmark.Markdown) {
 	)
 	md.Renderer().AddOptions(
 		renderer.WithNodeRenderers(
-			util.Prioritized(&Renderer{}, 100),
+			util.Prioritized(&Renderer{ToggleDefault: e.ToggleDefault}, 100),
 		),
 	)
 }
