@@ -11,8 +11,8 @@ import (
 // Transformer transforms a Goldmark Markdown AST with support for Pikchr
 // diagrams. It makes the following transformations:
 //
-//  - replace pikchr code blocks with pikchr.Block nodes
-//  - add a pikchr.ScriptBlock node if the document uses Pikchr
+//   - replace pikchr code blocks with pikchr.Block nodes
+//   - add a pikchr.ScriptBlock node if the document uses Pikchr
 type Transformer struct {
 }
 
@@ -20,6 +20,7 @@ var _pikchr = []byte("pikchr")
 
 // Transform transforms the provided Markdown AST.
 func (*Transformer) Transform(doc *ast.Document, reader text.Reader, pctx parser.Context) {
+
 	var (
 		hasScript    bool
 		pikchrBlocks []*ast.FencedCodeBlock

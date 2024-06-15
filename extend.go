@@ -19,7 +19,8 @@ import (
 //	  ),
 //	)
 type Extender struct {
-	ToggleDefault bool // If true, turn toggling on by default
+	ToggleDefault     bool // If true, turn toggling on by default
+	LimitWidthDefault bool // If true, turn limitwidth on by default
 }
 
 // Extend extends the provided Goldmark parser with support for Pikchr
@@ -27,12 +28,13 @@ type Extender struct {
 func (e *Extender) Extend(md goldmark.Markdown) {
 	md.Parser().AddOptions(
 		parser.WithASTTransformers(
-			util.Prioritized(&Transformer{}, 100),
+			util.Prioritized(&Transformer{}, 1000),
 		),
 	)
 	md.Renderer().AddOptions(
 		renderer.WithNodeRenderers(
-			util.Prioritized(&Renderer{ToggleDefault: e.ToggleDefault}, 100),
+			util.Prioritized(
+				&Renderer{ToggleDefault: e.ToggleDefault, LimitWidthDefault: e.LimitWidthDefault}, 100),
 		),
 	)
 }

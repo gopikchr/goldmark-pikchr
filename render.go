@@ -15,7 +15,8 @@ var limitWidthAttrName = []byte("limitwidth")
 
 // Renderer renders Pikchr diagrams as HTML/SVG.
 type Renderer struct {
-	ToggleDefault bool // If true, turn toggling on by default
+	ToggleDefault     bool // If true, turn toggling on by default
+	LimitWidthDefault bool // If true, turn limitwidth on by default
 }
 
 // RegisterFuncs registers the renderer for Pikchr blocks with the provided
