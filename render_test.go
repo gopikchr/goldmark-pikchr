@@ -22,13 +22,13 @@ func TestRenderer_Block(t *testing.T) {
 		{
 			desc: "empty",
 			give: "",
-			want: "<div id='pikchr-0' class='pikchr'>\n<div style='max-width:0px'>\n<!-- empty pikchr diagram -->\n</div>\n</div>\n",
+			want: "<div id='pikchr-0' class='pikchr'>\n<div class='pikchr-svg' style='max-width:0px'>\n<!-- empty pikchr diagram -->\n</div>\n</div>\n",
 		},
 		{
 			desc: "graph",
 			give: `box "Test"`,
 			want: trimLeadingSpace(`<div id='pikchr-0' class='pikchr'>
-				<div style='max-width:112px'>
+				<div class='pikchr-svg' style='max-width:112px'>
 				<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 112.32 76.32">
 				<path d="M2,74L110,74L110,2L2,2Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 				<text x="56" y="38" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Test</text>
